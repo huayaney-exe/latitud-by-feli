@@ -34,7 +34,7 @@ export default function CountdownBanner() {
   }
 
   return (
-    <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 border-b border-indigo-500/20 sticky top-0 z-50">
+    <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 border-b border-indigo-500/20 fixed top-0 left-0 right-0 z-[60]">
       <div className="container mx-auto px-4">
         <div className="flex flex-col sm:flex-row items-center justify-between py-2 gap-2 sm:gap-4 text-xs sm:text-sm">
           {/* Left: Urgency Message */}
