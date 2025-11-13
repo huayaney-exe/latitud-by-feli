@@ -89,6 +89,15 @@ body {
   }
 }
 
+@keyframes scroll-infinite {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.6s ease-out;
 }
@@ -103,6 +112,10 @@ body {
 
 .animate-rotate-slow {
   animation: rotate-slow 20s linear infinite;
+}
+
+.animate-scroll-infinite {
+  animation: scroll-infinite 40s linear infinite;
 }
 
 /* Geometric Pattern Utilities */
