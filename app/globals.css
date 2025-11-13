@@ -115,7 +115,21 @@ body {
 }
 
 .animate-scroll-infinite {
-  animation: scroll-infinite 40s linear infinite;
+  animation: scroll-infinite 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Pause animation on hover */
+.hover\:pause-animation:hover {
+  animation-play-state: paused;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-infinite {
+    animation: scroll-infinite 60s linear infinite;
+  }
 }
 
 /* Geometric Pattern Utilities */
