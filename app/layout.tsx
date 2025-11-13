@@ -14,13 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LATAI Summit 2025 | El Evento Premier de IA en Perú",
-  description: "Únete a 500+ líderes LATAM en el evento de Inteligencia Artificial más importante de Perú. 2 días de estrategias accionables, speakers de clase mundial y networking de alto impacto. Lima, Mayo 7-8, 2025.",
-  keywords: "IA Perú, Inteligencia Artificial, AI Summit, LATAI, evento tecnología, machine learning, fintech IA, transformación digital Perú",
+  title: "LATAI Summit 2025 | El Evento Premier de IA de LATAM para el Mundo",
+  description: "El evento premier de Inteligencia Artificial de LATAM para el mundo. Únete a 500+ líderes latinoamericanos construyendo el futuro de la IA. 2 días de estrategias accionables, speakers de clase mundial y networking de alto impacto. Lima, Mayo 7-8, 2025.",
+  keywords: "IA LATAM, Inteligencia Artificial Latinoamérica, AI Summit, LATAI, evento tecnología, machine learning, fintech IA, transformación digital, IA Perú, AI conference",
   authors: [{ name: "LATAI Summit" }],
   openGraph: {
-    title: "LATAI Summit 2025 | El Evento Premier de IA en Perú",
-    description: "Únete a 500+ líderes LATAM construyendo el futuro de la IA en Perú. Mayo 7-8, 2025 en Lima.",
+    title: "LATAI Summit 2025 | El Evento Premier de IA de LATAM para el Mundo",
+    description: "El evento premier de IA de LATAM para el mundo. 500+ líderes latinoamericanos construyendo el futuro de la Inteligencia Artificial. Mayo 7-8, 2025 en Lima.",
     url: "https://lataisummit.com",
     siteName: "LATAI Summit",
     locale: "es_PE",
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "LATAI Summit 2025 | El Evento Premier de IA en Perú",
-    description: "2 días de estrategias de IA, speakers de clase mundial y networking de alto impacto. Lima, Mayo 7-8, 2025.",
+    title: "LATAI Summit 2025 | El Evento Premier de IA de LATAM para el Mundo",
+    description: "El evento premier de IA de LATAM para el mundo. 2 días de estrategias de IA, speakers de clase mundial y networking de alto impacto. Lima, Mayo 7-8, 2025.",
     images: ["/og-image.jpg"],
   },
   robots: {
