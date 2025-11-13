@@ -38,12 +38,12 @@ const agendaData = {
 }
 
 const tracks = [
-  { name: 'Main Stage', color: 'bg-purple-600', textColor: 'text-purple-300' },
-  { name: 'Fintech', color: 'bg-cyan-600', textColor: 'text-cyan-300' },
+  { name: 'Main Stage', color: 'bg-orange-600', textColor: 'text-orange-300' },
+  { name: 'Fintech', color: 'bg-amber-600', textColor: 'text-amber-300' },
   { name: 'Technical', color: 'bg-blue-600', textColor: 'text-blue-300' },
   { name: 'Workshop A', color: 'bg-green-600', textColor: 'text-green-300' },
   { name: 'Workshop B', color: 'bg-yellow-600', textColor: 'text-yellow-300' },
-  { name: 'Startup', color: 'bg-pink-600', textColor: 'text-pink-300' },
+  { name: 'Startup', color: 'bg-orange-500', textColor: 'text-orange-300' },
   { name: 'Ethics', color: 'bg-indigo-600', textColor: 'text-indigo-300' },
   { name: 'General', color: 'bg-gray-600', textColor: 'text-gray-400' }
 ]
@@ -59,7 +59,7 @@ export default function AgendaSection() {
   const currentAgenda = activeTab === 'day1' ? agendaData.day1 : agendaData.day2
 
   return (
-    <section id="agenda" className="py-20 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
+    <section id="agenda" className="py-20 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -77,7 +77,7 @@ export default function AgendaSection() {
             onClick={() => setActiveTab('day1')}
             className={`px-8 py-3 rounded-lg font-semibold transition ${
               activeTab === 'day1'
-                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
+                ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white'
                 : 'bg-white/10 text-gray-400 hover:bg-white/20'
             }`}
           >
@@ -87,7 +87,7 @@ export default function AgendaSection() {
             onClick={() => setActiveTab('day2')}
             className={`px-8 py-3 rounded-lg font-semibold transition ${
               activeTab === 'day2'
-                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
+                ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white'
                 : 'bg-white/10 text-gray-400 hover:bg-white/20'
             }`}
           >

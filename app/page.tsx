@@ -1,3 +1,4 @@
+import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import PricingSection from '@/components/PricingSection'
 import SpeakerShowcase from '@/components/SpeakerShowcase'
@@ -9,15 +10,18 @@ import ROICalculator from '@/components/ROICalculator'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900">
-      <Hero />
-      <SocialProof />
-      <PricingSection />
-      <SpeakerShowcase />
-      <AgendaSection />
-      <ROICalculator />
-      <FAQSection />
-      <PartnerShowcase />
-    </main>
+    <>
+      <Navigation />
+      <main className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
+        <Hero />
+        <SocialProof />
+        <PricingSection />
+        <SpeakerShowcase />
+        <AgendaSection />
+        <ROICalculator />
+        <FAQSection />
+        <PartnerShowcase />
+      </main>
+    </>
   )
 }

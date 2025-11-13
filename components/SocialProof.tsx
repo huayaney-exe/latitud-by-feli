@@ -1,12 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { UserGroupIcon, MicrophoneIcon, CalendarIcon, BuildingOfficeIcon, ShieldCheckIcon, AcademicCapIcon } from '@heroicons/react/24/outline'
 
 const stats = [
-  { number: '500+', label: 'Asistentes Esperados', icon: '👥' },
-  { number: '15', label: 'Speakers Confirmados', icon: '🎤' },
-  { number: '2', label: 'Días Intensivos', icon: '📅' },
-  { number: '50+', label: 'Empresas Representadas', icon: '🏢' }
+  { number: '500+', label: 'Asistentes Esperados', Icon: UserGroupIcon },
+  { number: '15', label: 'Speakers Confirmados', Icon: MicrophoneIcon },
+  { number: '2', label: 'Días Intensivos', Icon: CalendarIcon },
+  { number: '50+', label: 'Empresas Representadas', Icon: BuildingOfficeIcon }
 ]
 
 const recentRegistrations = [
@@ -27,62 +28,76 @@ export default function SocialProof() {
   }, [])
 
   return (
-    <section className="py-20 bg-white/5 backdrop-blur-sm">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 relative">
+      {/* Diagonal Section Divider */}
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-slate-950 to-transparent transform -skew-y-2"></div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center transform transition hover:scale-105">
-              <div className="text-4xl mb-2">{stat.icon}</div>
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2 animate-pulse">
-                {stat.number}
+          {stats.map((stat, index) => {
+            const Icon = stat.Icon
+            return (
+              <div key={index} className="text-center group transform transition hover:scale-105">
+                <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-orange-500/20 to-amber-600/20 border border-orange-500/30 group-hover:border-orange-500/60 transition-all">
+                  <Icon className="w-8 h-8 text-orange-500" />
+                </div>
+                <div className="text-4xl md:text-5xl font-black text-white mb-2 font-display">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
               </div>
-              <div className="text-sm text-gray-400">{stat.label}</div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Live Activity Feed */}
         <div className="max-w-2xl mx-auto">
-          <div className="bg-gradient-to-r from-green-500/20 to-cyan-500/20 backdrop-blur-sm border border-green-500/30 rounded-lg px-6 py-4 text-center transition-all duration-500">
-            <p className="text-green-300 flex items-center justify-center gap-2">
+          <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 backdrop-blur-sm border border-green-500/30 rounded-xl px-6 py-4 text-center transition-all duration-500 shadow-lg shadow-green-500/10">
+            <p className="text-green-300 flex items-center justify-center gap-2 text-sm sm:text-base">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
               </span>
-              <span className="text-sm sm:text-base">
-                🎟️ <strong>{recentRegistrations[currentReg].name}</strong> de {recentRegistrations[currentReg].city} se registró hace {recentRegistrations[currentReg].time}
+              <span className="font-semibold">
+                {recentRegistrations[currentReg].name}
+              </span>
+              <span className="text-gray-300">de</span>
+              <span className="font-semibold">
+                {recentRegistrations[currentReg].city}
+              </span>
+              <span className="text-gray-300">se registró hace</span>
+              <span className="font-semibold">
+                {recentRegistrations[currentReg].time}
               </span>
             </p>
           </div>
-          <p className="text-center text-gray-400 text-sm mt-4">
-            85% de tickets vendidos | 23 tickets vendidos en las últimas 48 horas
+          <p className="text-center text-gray-400 text-sm mt-4 font-medium">
+            85% de tickets vendidos • 23 tickets vendidos en las últimas 48 horas
           </p>
         </div>
 
         {/* Trust Badges */}
-        <div className="mt-12 flex flex-wrap justify-center items-center gap-6 opacity-60">
-          <div className="flex items-center gap-2 text-gray-400">
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-            </svg>
-            <span className="text-sm">Pago Seguro con Stripe</span>
+        <div className="mt-12 flex flex-wrap justify-center items-center gap-8 opacity-80">
+          <div className="flex items-center gap-2 text-gray-400 group">
+            <ShieldCheckIcon className="w-6 h-6 text-green-500 group-hover:scale-110 transition-transform" />
+            <span className="text-sm font-medium">Pago Seguro con Stripe</span>
           </div>
-          <div className="flex items-center gap-2 text-gray-400">
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+          <div className="flex items-center gap-2 text-gray-400 group">
+            <svg className="w-6 h-6 text-blue-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span className="text-sm">Reembolso 100% hasta 30 días antes</span>
+            <span className="text-sm font-medium">Reembolso 100% hasta 30 días antes</span>
           </div>
-          <div className="flex items-center gap-2 text-gray-400">
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-            </svg>
-            <span className="text-sm">Certificado de Asistencia Incluido</span>
+          <div className="flex items-center gap-2 text-gray-400 group">
+            <AcademicCapIcon className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform" />
+            <span className="text-sm font-medium">Certificado de Asistencia Incluido</span>
           </div>
         </div>
       </div>
+
+      {/* Bottom Diagonal Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-950 to-transparent transform skew-y-2"></div>
     </section>
   )
 }

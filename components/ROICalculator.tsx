@@ -109,7 +109,7 @@ export default function ROICalculator() {
                       onClick={() => setCompanySize(idx)}
                       className={`px-4 py-3 rounded-lg font-medium transition ${
                         companySize === idx
-                          ? 'bg-gradient-to-r from-cyan-600 to-blue-700 text-white'
+                          ? 'bg-gradient-to-r from-orange-500 to-amber-600 text-white'
                           : 'bg-slate-800 text-gray-400 hover:bg-slate-700'
                       }`}
                     >
@@ -129,7 +129,7 @@ export default function ROICalculator() {
                       onClick={() => setMaturity(level.value)}
                       className={`px-4 py-3 rounded-lg font-medium transition ${
                         maturity === level.value
-                          ? 'bg-gradient-to-r from-purple-600 to-pink-700 text-white'
+                          ? 'bg-gradient-to-r from-orange-600 to-amber-700 text-white'
                           : 'bg-slate-800 text-gray-400 hover:bg-slate-700'
                       }`}
                     >
@@ -142,7 +142,7 @@ export default function ROICalculator() {
               {/* Calculate Button */}
               <button
                 onClick={handleCalculate}
-                className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-lg font-bold rounded-lg transform transition hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="w-full py-4 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white text-lg font-bold rounded-lg shadow-lg shadow-orange-500/20 transform transition hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 disabled={!industry || companySize === null || !maturity}
               >
                 Calcular Mi ROI

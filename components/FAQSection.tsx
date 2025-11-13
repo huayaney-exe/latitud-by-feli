@@ -53,7 +53,7 @@ export default function FAQSection() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
+    <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -71,7 +71,7 @@ export default function FAQSection() {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl border border-slate-700 overflow-hidden transition hover:border-purple-500/50"
+                className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl border border-slate-700 overflow-hidden transition hover:border-orange-500/50"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
@@ -81,7 +81,7 @@ export default function FAQSection() {
                     {faq.question}
                   </h3>
                   <svg
-                    className={`w-6 h-6 text-cyan-400 flex-shrink-0 transition-transform ${
+                    className={`w-6 h-6 text-orange-400 flex-shrink-0 transition-transform ${
                       openIndex === index ? 'transform rotate-180' : ''
                     }`}
                     fill="none"
