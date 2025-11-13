@@ -64,7 +64,7 @@ export default function TechPartnersBanner() {
   const scrollingPartners = [...partners, ...partners, ...partners]
 
   return (
-    <div className="relative w-full overflow-hidden bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 py-6 border-b border-white/10">
+    <section className="relative w-full overflow-hidden bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 py-8 border-y border-white/10">
       {/* Gradient fade edges */}
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-indigo-600 to-transparent z-10 pointer-events-none"></div>
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-indigo-600 to-transparent z-10 pointer-events-none"></div>
@@ -82,13 +82,13 @@ export default function TechPartnersBanner() {
       </div>
 
       {/* Label text */}
-      <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 z-20">
-        <div className="bg-indigo-700 px-3 py-0.5 rounded-full border border-white/20">
-          <p className="text-[10px] text-white/80 font-medium uppercase tracking-wider">
-            Powered by
+      <div className="absolute left-1/2 -translate-x-1/2 -bottom-3 z-20">
+        <div className="bg-indigo-700 px-4 py-1 rounded-full border border-white/20 shadow-lg">
+          <p className="text-[11px] text-white/90 font-semibold uppercase tracking-wider">
+            Technology Partners
           </p>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

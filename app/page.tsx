@@ -14,10 +14,10 @@ export default function Home() {
   return (
     <>
       <CountdownBanner />
-      <TechPartnersBanner />
       <Navigation />
       <main className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
         <Hero />
+        <TechPartnersBanner />
         <SocialProof />
         <PricingSection />
         <SpeakerShowcase />

@@ -13,7 +13,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[184px]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[124px]">
       {/* Modern Geometric Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
         {/* Geometric Grid Pattern */}
