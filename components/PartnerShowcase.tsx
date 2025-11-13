@@ -2,6 +2,67 @@ export default function PartnerShowcase() {
   return (
     <section className="py-20 bg-slate-900/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Technology Partners Section */}
+        <div className="mb-20">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 font-display">
+              Impulsado por Tecnología de Vanguardia
+            </h3>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Nuestros socios tecnológicos hacen posible esta experiencia
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Prisma Card */}
+            <div className="bg-gradient-to-br from-indigo-900/30 to-violet-900/30 backdrop-blur-sm border border-indigo-500/30 rounded-2xl p-8 hover:border-indigo-500/50 transition-all hover:shadow-lg hover:shadow-indigo-500/20">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center">
+                  <svg className="w-10 h-10 text-indigo-600" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0L3 7v10l9 7 9-7V7L12 0zm0 2.5l7 5.25v8.5l-7 5.25-7-5.25v-8.5l7-5.25z"/>
+                    <path d="M12 6l-4 3v6l4 3 4-3V9l-4-3zm0 2l2 1.5v3L12 14l-2-1.5v-3L12 8z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-white font-display">Prisma</h4>
+                  <p className="text-violet-400 text-sm font-medium">Database Partner</p>
+                </div>
+              </div>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Prisma proporciona la infraestructura de base de datos de próxima generación que impulsa las aplicaciones modernas de IA. Su ORM type-safe acelera el desarrollo y garantiza la integridad de datos en sistemas de producción.
+              </p>
+              <div className="mt-4 pt-4 border-t border-white/10">
+                <p className="text-xs text-gray-400">
+                  <span className="text-violet-400 font-semibold">Contribución:</span> Infraestructura de datos y herramientas para startups de IA
+                </p>
+              </div>
+            </div>
+
+            {/* Conversia Card */}
+            <div className="bg-gradient-to-br from-indigo-900/30 to-violet-900/30 backdrop-blur-sm border border-indigo-500/30 rounded-2xl p-8 hover:border-indigo-500/50 transition-all hover:shadow-lg hover:shadow-indigo-500/20">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center">
+                  <svg className="w-10 h-10 text-indigo-600" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-white font-display">Conversia</h4>
+                  <p className="text-violet-400 text-sm font-medium">Analytics Partner</p>
+                </div>
+              </div>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Conversia lidera la transformación digital con análisis avanzado y soluciones de IA para empresas latinoamericanas. Su plataforma optimiza conversiones y mejora la toma de decisiones basada en datos.
+              </p>
+              <div className="mt-4 pt-4 border-t border-white/10">
+                <p className="text-xs text-gray-400">
+                  <span className="text-violet-400 font-semibold">Contribución:</span> Plataforma de análisis y optimización de conversión
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
@@ -172,6 +233,20 @@ export default function PartnerShowcase() {
                   </svg>
                 </a>
               </div>
+            </div>
+          </div>
+
+          {/* Technology Attribution */}
+          <div className="text-center py-6 border-t border-white/10">
+            <p className="text-gray-500 text-xs mb-2">Technology Partners</p>
+            <div className="flex justify-center items-center gap-6">
+              <a href="https://prisma.io" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-violet-400 transition text-sm font-medium">
+                Powered by Prisma
+              </a>
+              <span className="text-gray-700">•</span>
+              <a href="https://conversia.io" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-violet-400 transition text-sm font-medium">
+                Analytics by Conversia
+              </a>
             </div>
           </div>
 

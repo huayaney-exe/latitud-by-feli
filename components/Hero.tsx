@@ -1,34 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { CalendarDaysIcon, MapPinIcon, UserGroupIcon, AcademicCapIcon } from '@heroicons/react/24/outline'
 
 export default function Hero() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 2,
-    hours: 14,
-    minutes: 23,
-    seconds: 45
-  })
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 }
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
-        } else if (prev.hours > 0) {
-          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
-        } else if (prev.days > 0) {
-          return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 }
-        }
-        return prev
-      })
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [])
 
   const scrollToPricing = () => {
     document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
@@ -112,37 +86,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Urgency Element with Orange Accent */}
-          <div className="inline-block bg-gradient-to-r from-indigo-900/40 to-red-900/40 backdrop-blur-sm border-2 border-indigo-500/50 rounded-xl px-6 py-4 shadow-lg shadow-indigo-500/20">
-            <p className="text-violet-300 text-sm font-semibold mb-2 flex items-center justify-center gap-2">
-              <svg className="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-              </svg>
-              Early Bird termina en:
-            </p>
-            <div className="flex gap-4 justify-center">
-              <div className="text-center">
-                <div className="text-3xl font-black text-white font-display">{timeLeft.days}</div>
-                <div className="text-xs text-gray-400 uppercase tracking-wide">días</div>
-              </div>
-              <div className="text-3xl text-indigo-500 font-bold">:</div>
-              <div className="text-center">
-                <div className="text-3xl font-black text-white font-display">{timeLeft.hours}</div>
-                <div className="text-xs text-gray-400 uppercase tracking-wide">horas</div>
-              </div>
-              <div className="text-3xl text-indigo-500 font-bold">:</div>
-              <div className="text-center">
-                <div className="text-3xl font-black text-white font-display">{timeLeft.minutes}</div>
-                <div className="text-xs text-gray-400 uppercase tracking-wide">min</div>
-              </div>
-              <div className="text-3xl text-indigo-500 font-bold">:</div>
-              <div className="text-center">
-                <div className="text-3xl font-black text-white font-display">{timeLeft.seconds}</div>
-                <div className="text-xs text-gray-400 uppercase tracking-wide">seg</div>
-              </div>
-            </div>
-            <p className="text-indigo-200 text-sm mt-3 font-medium">Solo quedan 12 tickets a este precio</p>
-          </div>
         </div>
       </div>
 

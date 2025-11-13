@@ -60,24 +60,6 @@ const pricingTiers = [
     bgColor: 'from-slate-700 to-slate-900',
     remaining: 150
   },
-  {
-    name: 'Last Chance',
-    discount: 'Disponibilidad Limitada',
-    pricePEN: 'S/1,150',
-    priceUSD: '$305',
-    originalPrice: 'S/1,000',
-    availability: 'Última semana',
-    popular: false,
-    features: [
-      'Acceso completo a todas las sesiones',
-      'Materiales del evento digitales',
-      'Certificado de asistencia',
-      'Acceso a grabaciones post-evento'
-    ],
-    cta: 'Obtener Ticket',
-    bgColor: 'from-red-600 to-red-800',
-    remaining: 50
-  }
 ]
 
 export default function PricingSection() {
