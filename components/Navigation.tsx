@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -50,18 +51,14 @@ export default function Navigation() {
               onClick={() => scrollToSection('#')}
               className="flex items-center gap-3 group"
             >
-              <div className="relative">
-                {/* Geometric Logo */}
-                <div className="w-12 h-12 relative">
-                  {/* Orange Triangle */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 to-violet-600 transform rotate-45 rounded-sm"></div>
-                  {/* Navy Accent */}
-                  <div className="absolute inset-2 bg-blue-900 transform rotate-45 rounded-sm"></div>
-                  {/* Center Dot */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-indigo-500 rounded-full"></div>
-                  </div>
-                </div>
+              <div className="relative w-12 h-12">
+                <Image
+                  src="/assets/latai-logo.png"
+                  alt="LATAI Summit Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
               <div className="font-display">
                 <div className="text-2xl font-bold text-white group-hover:text-indigo-500 transition-colors">
