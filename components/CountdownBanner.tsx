@@ -36,7 +36,7 @@ export default function CountdownBanner() {
   return (
     <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 border-b border-indigo-500/20 fixed top-0 left-0 right-0 z-[60]">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row items-center justify-between py-2 gap-2 sm:gap-4 text-xs sm:text-sm">
+        <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between py-2 gap-2 sm:gap-4 text-xs sm:text-sm">
           {/* Left: Urgency Message */}
           <div className="flex items-center gap-2 text-violet-300 font-medium">
             <svg className="w-4 h-4 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
@@ -69,10 +69,10 @@ export default function CountdownBanner() {
             </div>
           </div>
 
-          {/* Right: CTA */}
+          {/* Right: CTA - Hidden on mobile to avoid double CTA, visible on desktop */}
           <button
             onClick={scrollToPricing}
-            className="px-4 py-1.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold rounded text-xs sm:text-sm transition-all whitespace-nowrap"
+            className="hidden sm:block px-4 py-1.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold rounded text-xs sm:text-sm transition-all whitespace-nowrap"
           >
             Obtener Descuento →
           </button>
