@@ -1,152 +1,170 @@
 'use client'
 
-import { useState } from 'react'
-
-const agendaData = {
-  day1: [
-    { time: '09:00-09:30', title: 'Registro y Desayuno de Bienvenida', track: 'General', speaker: '' },
-    { time: '09:30-10:30', title: 'Keynote: El Futuro de la IA en Perú', track: 'Main Stage', speaker: 'Dr. María Rodríguez' },
-    { time: '10:30-11:00', title: 'Networking Break ☕', track: 'General', speaker: '' },
-    { time: '11:00-12:00', title: 'IA en Fintech: Casos de Éxito Peruanos', track: 'Fintech', speaker: 'Carlos Mendoza' },
-    { time: '11:00-12:00', title: 'Implementando IA en Sistemas Legacy', track: 'Technical', speaker: 'Roberto Silva' },
-    { time: '11:00-12:00', title: 'IA Ética y Responsable', track: 'Ethics', speaker: 'Dra. Ana Gutiérrez' },
-    { time: '12:00-13:00', title: 'Panel: Transformación Digital con IA', track: 'Main Stage', speaker: 'Panel de Expertos' },
-    { time: '13:00-14:30', title: 'Almuerzo y Networking 🍽️', track: 'General', speaker: '' },
-    { time: '14:30-15:30', title: 'Workshop: IA Generativa para Negocios', track: 'Workshop A', speaker: 'Laura Martínez' },
-    { time: '14:30-15:30', title: 'Detección de Fraude con ML', track: 'Workshop B', speaker: 'Miguel Torres' },
-    { time: '15:30-16:00', title: 'Break ☕', track: 'General', speaker: '' },
-    { time: '16:00-17:00', title: 'Escalando Startups de IA', track: 'Startup', speaker: 'Diego Ramírez' },
-    { time: '17:00-18:00', title: 'Sesiones de Networking Estructurado', track: 'General', speaker: '' },
-    { time: '19:00-22:00', title: 'Cena VIP de Networking 🌟', track: 'VIP Only', speaker: '' }
-  ],
-  day2: [
-    { time: '09:00-09:30', title: 'Desayuno y Registro', track: 'General', speaker: '' },
-    { time: '09:30-10:30', title: 'Keynote: IA en Logística y Optimización', track: 'Main Stage', speaker: 'Roberto Silva' },
-    { time: '10:30-11:00', title: 'Networking Break ☕', track: 'General', speaker: '' },
-    { time: '11:00-12:00', title: 'Personalización con IA: De Datos a Experiencias', track: 'E-commerce', speaker: 'Dra. Patricia Gómez' },
-    { time: '11:00-12:00', title: 'De Prototipo a Producción', track: 'Technical', speaker: 'Laura Martínez' },
-    { time: '11:00-12:00', title: 'IA y ROI: Midiendo Impacto Real', track: 'Business', speaker: 'Carlos Mendoza' },
-    { time: '12:00-13:00', title: 'Panel: Invirtiendo en IA en LATAM', track: 'Main Stage', speaker: 'Panel VCs y Founders' },
-    { time: '13:00-14:30', title: 'Almuerzo y Networking 🍽️', track: 'General', speaker: '' },
-    { time: '14:30-15:30', title: 'Workshop: Prompt Engineering Avanzado', track: 'Workshop A', speaker: 'Laura Martínez' },
-    { time: '14:30-15:30', title: 'Construyendo Equipos de IA', track: 'Workshop B', speaker: 'Miguel Torres' },
-    { time: '15:30-16:00', title: 'Break ☕', track: 'General', speaker: '' },
-    { time: '16:00-17:00', title: 'Casos de Éxito: IA que Genera Resultados', track: 'Main Stage', speaker: 'Panel de CTOs' },
-    { time: '17:00-17:30', title: 'Keynote de Cierre: El Camino a Seguir', track: 'Main Stage', speaker: 'Dr. María Rodríguez' },
-    { time: '17:30-18:00', title: 'Sorteos y Despedida 🎁', track: 'General', speaker: '' }
-  ]
+interface AgendaSectionProps {
+  onOpenWaitlist?: () => void
 }
 
-const tracks = [
-  { name: 'Main Stage', color: 'bg-indigo-600', textColor: 'text-violet-300' },
-  { name: 'Fintech', color: 'bg-violet-600', textColor: 'text-violet-300' },
-  { name: 'Technical', color: 'bg-blue-600', textColor: 'text-blue-300' },
-  { name: 'Workshop A', color: 'bg-green-600', textColor: 'text-green-300' },
-  { name: 'Workshop B', color: 'bg-yellow-600', textColor: 'text-yellow-300' },
-  { name: 'Startup', color: 'bg-indigo-500', textColor: 'text-violet-300' },
-  { name: 'Ethics', color: 'bg-indigo-600', textColor: 'text-indigo-300' },
-  { name: 'General', color: 'bg-gray-600', textColor: 'text-gray-400' }
+// Temas confirmados (sin speakers específicos aún)
+const confirmedTracks = [
+  {
+    name: 'IA Operacional',
+    description: 'Implementación real, no teoría',
+    icon: '⚙️',
+    topics: ['De piloto a producción', 'Infraestructura a escala', 'ROI medible']
+  },
+  {
+    name: 'IA Generativa',
+    description: 'LLMs en productos reales',
+    icon: '🤖',
+    topics: ['RAG en producción', 'Fine-tuning enterprise', 'Costos y optimización']
+  },
+  {
+    name: 'Fintech & IA',
+    description: 'Casos de LATAM',
+    icon: '💳',
+    topics: ['Detección de fraude', 'Credit scoring', 'Automatización KYC']
+  },
+  {
+    name: 'Liderazgo',
+    description: 'Para CTOs y Heads of AI',
+    icon: '🎯',
+    topics: ['Construir equipos de IA', 'Presupuestos y priorización', 'Governance']
+  }
 ]
 
-export default function AgendaSection() {
-  const [activeTab, setActiveTab] = useState<'day1' | 'day2'>('day1')
+const eventFormat = [
+  { time: '09:00', activity: 'Registro y networking', type: 'general' },
+  { time: '09:30', activity: 'Keynote principal', type: 'main' },
+  { time: '10:30', activity: 'Tracks paralelos (3 sesiones)', type: 'tracks' },
+  { time: '12:00', activity: 'Panel de operadores', type: 'main' },
+  { time: '13:00', activity: 'Almuerzo y networking', type: 'general' },
+  { time: '14:30', activity: 'Workshops prácticos', type: 'workshop' },
+  { time: '16:00', activity: 'Casos de estudio', type: 'tracks' },
+  { time: '17:00', activity: 'Networking estructurado', type: 'general' },
+  { time: '19:00', activity: 'Cena VIP (ticket Premium)', type: 'vip' }
+]
 
-  const getTrackColor = (trackName: string) => {
-    const track = tracks.find(t => t.name === trackName)
-    return track || tracks[tracks.length - 1]
-  }
-
-  const currentAgenda = activeTab === 'day1' ? agendaData.day1 : agendaData.day2
-
+export default function AgendaSection({ onOpenWaitlist }: AgendaSectionProps) {
   return (
-    <section id="agenda" className="py-20 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="agenda" className="py-20 bg-[#0f0a05] relative">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 qhapaq-network opacity-20"></div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Agenda Completa del Evento
+            2 Días de Contenido Operacional
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            2 días intensivos de contenido accionable, workshops prácticos y networking estratégico
+            Workshops prácticos, paneles con operadores reales, y networking estructurado
           </p>
         </div>
 
-        {/* Day Tabs */}
-        <div className="flex justify-center mb-8 gap-4">
-          <button
-            onClick={() => setActiveTab('day1')}
-            className={`px-8 py-3 rounded-lg font-semibold transition ${
-              activeTab === 'day1'
-                ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white'
-                : 'bg-white/10 text-gray-400 hover:bg-white/20'
-            }`}
-          >
-            Día 1 - Mayo 7
-          </button>
-          <button
-            onClick={() => setActiveTab('day2')}
-            className={`px-8 py-3 rounded-lg font-semibold transition ${
-              activeTab === 'day2'
-                ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white'
-                : 'bg-white/10 text-gray-400 hover:bg-white/20'
-            }`}
-          >
-            Día 2 - Mayo 8
-          </button>
+        {/* Event Dates */}
+        <div className="flex justify-center gap-4 mb-12">
+          <div className="stone-block border-[#E99C37]/30 px-8 py-4 text-center">
+            <p className="text-[#FBD64C] font-bold text-2xl">Mayo 7</p>
+            <p className="text-gray-400 text-sm">Día 1</p>
+          </div>
+          <div className="stone-block border-[#E99C37]/30 px-8 py-4 text-center">
+            <p className="text-[#FBD64C] font-bold text-2xl">Mayo 8</p>
+            <p className="text-gray-400 text-sm">Día 2</p>
+          </div>
         </div>
 
-        {/* Track Legend */}
-        <div className="flex flex-wrap justify-center gap-3 mb-8">
-          {tracks.filter(t => t.name !== 'General').map((track, idx) => (
-            <div key={idx} className="flex items-center gap-2">
-              <div className={`w-4 h-4 rounded ${track.color}`}></div>
-              <span className="text-sm text-gray-400">{track.name}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Agenda Timeline */}
-        <div className="max-w-5xl mx-auto">
-          {currentAgenda.map((item, index) => {
-            const trackColor = getTrackColor(item.track)
-            const isBreak = item.track === 'General' && (item.title.includes('Break') || item.title.includes('Registro') || item.title.includes('Networking') || item.title.includes('Almuerzo'))
-
-            return (
+        {/* Confirmed Tracks */}
+        <div className="mb-16">
+          <h3 className="text-center text-2xl font-bold text-white mb-8">
+            Tracks Confirmados
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {confirmedTracks.map((track, index) => (
               <div
                 key={index}
-                className={`flex gap-4 mb-4 ${isBreak ? 'opacity-70' : ''}`}
+                className="stone-block border-[#E99C37]/20 p-6 hover:border-[#E99C37]/40 transition"
               >
-                {/* Time */}
-                <div className="flex-shrink-0 w-32 text-right">
-                  <span className="text-cyan-400 font-semibold">{item.time}</span>
-                </div>
-
-                {/* Session Card */}
-                <div className="flex-grow">
-                  <div className={`bg-gradient-to-r ${isBreak ? 'from-slate-800 to-slate-900' : 'from-slate-800 to-slate-900'} border-l-4 ${trackColor.color} rounded-lg p-4 hover:shadow-lg hover:shadow-purple-500/10 transition`}>
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                      <div className="flex-grow">
-                        <h4 className="text-lg font-semibold text-white mb-1">{item.title}</h4>
-                        {item.speaker && (
-                          <p className="text-sm text-gray-400">🎤 {item.speaker}</p>
-                        )}
-                      </div>
-                      <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${trackColor.color} ${trackColor.textColor}`}>
-                        {item.track}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div className="text-4xl mb-4">{track.icon}</div>
+                <h4 className="text-lg font-bold text-white mb-1">{track.name}</h4>
+                <p className="text-[#E99C37] text-sm mb-4">{track.description}</p>
+                <ul className="space-y-2">
+                  {track.topics.map((topic, i) => (
+                    <li key={i} className="text-sm text-gray-400 flex items-start gap-2">
+                      <span className="text-[#FBD64C]">→</span>
+                      {topic}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            )
-          })}
+            ))}
+          </div>
         </div>
 
-        {/* Download CTA */}
-        <div className="text-center mt-12">
-          <button className="px-8 py-3 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-semibold rounded-lg border border-white/30 transition">
-            📥 Descargar Agenda Completa (PDF)
-          </button>
+        {/* Daily Format */}
+        <div className="max-w-3xl mx-auto mb-12">
+          <h3 className="text-center text-2xl font-bold text-white mb-8">
+            Formato del Día
+          </h3>
+          <div className="stone-block border-[#E99C37]/20 p-6">
+            {eventFormat.map((item, index) => (
+              <div
+                key={index}
+                className={`flex items-center gap-4 py-3 ${
+                  index !== eventFormat.length - 1 ? 'border-b border-[#3d2f1e]' : ''
+                }`}
+              >
+                <div className="w-16 text-right">
+                  <span className="text-[#FBD64C] font-semibold">{item.time}</span>
+                </div>
+                <div className="flex-grow">
+                  <span className={`${
+                    item.type === 'main' ? 'text-white font-medium' :
+                    item.type === 'workshop' ? 'text-[#E99C37]' :
+                    item.type === 'vip' ? 'text-[#FBD64C]' :
+                    'text-gray-400'
+                  }`}>
+                    {item.activity}
+                  </span>
+                </div>
+                <div>
+                  {item.type === 'main' && (
+                    <span className="text-xs bg-[#FBD64C]/20 text-[#FBD64C] px-2 py-1 rounded">MAIN</span>
+                  )}
+                  {item.type === 'workshop' && (
+                    <span className="text-xs bg-[#E99C37]/20 text-[#E99C37] px-2 py-1 rounded">HANDS-ON</span>
+                  )}
+                  {item.type === 'vip' && (
+                    <span className="text-xs bg-[#9A0B25]/20 text-[#FBD64C] px-2 py-1 rounded">VIP</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Coming Soon Notice */}
+        <div className="text-center">
+          <div className="stone-block border-dashed border-[#E99C37]/30 p-8 max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E99C37] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#E99C37]"></span>
+              </span>
+              <span className="text-[#FBD64C] font-semibold">Agenda detallada próximamente</span>
+            </div>
+
+            <p className="text-gray-300 mb-6">
+              Estamos confirmando sesiones específicas con operadores de IA de LATAM.
+              Regístrate para recibir la agenda completa cuando esté lista.
+            </p>
+
+            <button
+              onClick={onOpenWaitlist}
+              className="btn-stone-primary px-8 py-3 text-white font-semibold transition"
+            >
+              Recibir agenda cuando salga
+            </button>
+          </div>
         </div>
       </div>
     </section>

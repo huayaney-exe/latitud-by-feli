@@ -67,7 +67,7 @@ export default function ROICalculator() {
   const results = calculateROI()
 
   return (
-    <section className="py-20 bg-slate-900">
+    <section className="py-20 bg-[#0f0a05]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -76,12 +76,12 @@ export default function ROICalculator() {
               Calcula Tu ROI del Summit
             </h2>
             <p className="text-xl text-gray-300">
-              Descubre el valor potencial que obtendrás al asistir a LATAI Summit
+              Descubre el valor potencial que obtendrás al asistir a CENTRO
             </p>
           </div>
 
-          {/* Calculator Card */}
-          <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8">
+          {/* Calculator Card - Stone Block */}
+          <div className="stone-block-warm p-8">
             {/* Form */}
             <div className="space-y-6 mb-8">
               {/* Industry Selection */}
@@ -90,7 +90,8 @@ export default function ROICalculator() {
                 <select
                   value={industry}
                   onChange={(e) => setIndustry(e.target.value)}
-                  className="w-full bg-slate-800 text-white border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-cyan-500 transition"
+                  className="w-full bg-[#0f0a05] text-white border-2 border-[#3d2f1e] px-4 py-3 focus:outline-none focus:border-[#E99C37] transition"
+                  style={{ borderRadius: '3px' }}
                 >
                   <option value="">Selecciona tu industria</option>
                   {industries.map((ind, idx) => (
@@ -99,18 +100,18 @@ export default function ROICalculator() {
                 </select>
               </div>
 
-              {/* Company Size */}
+              {/* Company Size - Tocapu Grid */}
               <div>
                 <label className="block text-white font-semibold mb-3">Tamaño de tu Empresa:</label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="tocapu-grid grid-cols-1 sm:grid-cols-2">
                   {companySizes.map((size, idx) => (
                     <button
                       key={idx}
                       onClick={() => setCompanySize(idx)}
-                      className={`px-4 py-3 rounded-lg font-medium transition ${
+                      className={`px-4 py-3 font-medium transition text-left ${
                         companySize === idx
-                          ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white'
-                          : 'bg-slate-800 text-gray-400 hover:bg-slate-700'
+                          ? 'bg-gradient-to-r from-[#E99C37] to-[#D4A83D] text-white'
+                          : 'bg-[#1a1208] text-gray-400 hover:bg-[#251a0f]'
                       }`}
                     >
                       {size.label}
@@ -119,18 +120,18 @@ export default function ROICalculator() {
                 </div>
               </div>
 
-              {/* AI Maturity */}
+              {/* AI Maturity - Tocapu Grid */}
               <div>
                 <label className="block text-white font-semibold mb-3">Madurez de IA Actual:</label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="tocapu-grid grid-cols-1 sm:grid-cols-2">
                   {maturityLevels.map((level, idx) => (
                     <button
                       key={idx}
                       onClick={() => setMaturity(level.value)}
-                      className={`px-4 py-3 rounded-lg font-medium transition ${
+                      className={`px-4 py-3 font-medium transition text-left ${
                         maturity === level.value
-                          ? 'bg-gradient-to-r from-violet-600 to-purple-700 text-white'
-                          : 'bg-slate-800 text-gray-400 hover:bg-slate-700'
+                          ? 'bg-gradient-to-r from-[#C47F2A] to-[#E99C37] text-white'
+                          : 'bg-[#1a1208] text-gray-400 hover:bg-[#251a0f]'
                       }`}
                     >
                       {level.label}
@@ -142,63 +143,62 @@ export default function ROICalculator() {
               {/* Calculate Button */}
               <button
                 onClick={handleCalculate}
-                className="w-full py-4 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white text-lg font-bold rounded-lg shadow-lg shadow-indigo-500/20 transform transition hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="w-full py-4 btn-stone-primary text-white text-lg font-bold transform transition hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 disabled={!industry || companySize === null || !maturity}
               >
                 Calcular Mi ROI
               </button>
             </div>
 
-            {/* Results */}
+            {/* Results - Stone Block */}
             {showResults && results && (
-              <div className="bg-gradient-to-r from-green-900/30 to-cyan-900/30 border border-green-500/30 rounded-xl p-6 animate-fade-in">
+              <div className="stone-block border-green-700/30 bg-gradient-to-r from-green-950/20 to-[#1a1208] p-6 animate-fade-in">
                 <h3 className="text-2xl font-bold text-white mb-4 text-center">
-                  📊 Tu ROI Proyectado
+                  Tu ROI Proyectado
                 </h3>
 
-                <div className="grid sm:grid-cols-2 gap-6 mb-6">
-                  <div className="text-center">
+                {/* Results Grid - Tocapu */}
+                <div className="tocapu-grid grid-cols-2 mb-6">
+                  <div className="text-center p-4 bg-[#1a1208]">
                     <p className="text-gray-400 text-sm mb-2">Estrategias Accionables</p>
-                    <p className="text-4xl font-bold text-cyan-400">{results.strategies}-{results.strategies + 2}</p>
+                    <p className="text-4xl font-bold text-[#FBD64C]">{results.strategies}-{results.strategies + 2}</p>
                     <p className="text-gray-400 text-xs mt-1">para implementar el lunes</p>
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center p-4 bg-[#1a1208]">
                     <p className="text-gray-400 text-sm mb-2">Valor Estimado Año 1</p>
                     <p className="text-4xl font-bold text-green-400">
                       S/{results.valueMin.toLocaleString()}-{results.valueMax.toLocaleString()}
                     </p>
                     <p className="text-gray-400 text-xs mt-1">en mejoras y ahorros</p>
                   </div>
-                </div>
 
-                <div className="grid sm:grid-cols-2 gap-6 mb-6">
-                  <div className="text-center">
+                  <div className="text-center p-4 bg-[#1a1208]">
                     <p className="text-gray-400 text-sm mb-2">ROI Esperado</p>
-                    <p className="text-4xl font-bold text-purple-400">{results.roiMin}x-{results.roiMax}x</p>
+                    <p className="text-4xl font-bold text-[#E99C37]">{results.roiMin}x-{results.roiMax}x</p>
                     <p className="text-gray-400 text-xs mt-1">retorno sobre inversión del ticket</p>
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center p-4 bg-[#1a1208]">
                     <p className="text-gray-400 text-sm mb-2">Conexiones Valiosas</p>
-                    <p className="text-4xl font-bold text-pink-400">{results.connections}+</p>
+                    <p className="text-4xl font-bold text-[#D4A83D]">{results.connections}+</p>
                     <p className="text-gray-400 text-xs mt-1">profesionales relevantes</p>
                   </div>
                 </div>
 
-                <div className="bg-white/5 rounded-lg p-4 text-center">
+                <div className="stone-block p-4 text-center">
                   <p className="text-white font-semibold mb-2">
-                    💡 Una sola idea implementada puede pagar tu ticket 10x
+                    Una sola idea implementada puede pagar tu ticket 10x
                   </p>
                   <p className="text-gray-400 text-sm">
-                    Basado en resultados de asistentes similares en eventos previos
+                    Proyección basada en benchmarks de industria
                   </p>
                 </div>
 
                 <div className="text-center mt-6">
                   <button
                     onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="px-8 py-3 bg-gradient-to-r from-green-500 to-cyan-600 hover:from-green-600 hover:to-cyan-700 text-white font-bold rounded-lg transform transition hover:scale-105"
+                    className="btn-stone-primary px-8 py-3 text-white font-bold transform transition hover:scale-105"
                   >
                     Asegurar Mi Ticket Ahora
                   </button>
@@ -209,8 +209,8 @@ export default function ROICalculator() {
 
           {/* Disclaimer */}
           <p className="text-gray-500 text-xs text-center mt-6">
-            * Los cálculos son estimaciones basadas en benchmarks de industria y feedback de eventos similares.
-            Los resultados reales pueden variar según implementación y contexto específico.
+            * Los cálculos son estimaciones proyectadas basadas en benchmarks de industria.
+            Los resultados reales variarán según tu implementación y contexto específico.
           </p>
         </div>
       </div>

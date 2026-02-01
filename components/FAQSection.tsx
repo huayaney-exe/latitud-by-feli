@@ -5,7 +5,7 @@ import { useState } from 'react'
 const faqs = [
   {
     question: '¿Este evento es solo para empresas grandes o también para startups y PYMEs?',
-    answer: 'LATAI Summit está diseñado para empresas de todos los tamaños. 40% de nuestros asistentes son de startups y PYMEs. Tenemos tracks específicos para "IA con Presupuesto Limitado" y "Quick Wins para Equipos Pequeños". La diversidad de tamaños de empresa enriquece el networking y las perspectivas compartidas.'
+    answer: 'CENTRO está diseñado para empresas de todos los tamaños. Tenemos contenido relevante tanto para startups que inician su journey de IA como para empresas establecidas que buscan escalar sus implementaciones. La diversidad de tamaños de empresa enriquece el networking y las perspectivas compartidas.'
   },
   {
     question: '¿Las sesiones serán en español o inglés?',
@@ -17,19 +17,19 @@ const faqs = [
   },
   {
     question: '¿Puedo asistir virtualmente o solo es presencial?',
-    answer: 'LATAI Summit es exclusivamente presencial para maximizar el valor del networking y las conexiones cara a cara. Sin embargo, todos los asistentes reciben acceso a las grabaciones de las sesiones principales durante 60 días después del evento, para que puedas revisar el contenido.'
+    answer: 'CENTRO es exclusivamente presencial para maximizar el valor del networking y las conexiones cara a cara. Sin embargo, todos los asistentes reciben acceso a las grabaciones de las sesiones principales durante 60 días después del evento, para que puedas revisar el contenido.'
   },
   {
     question: '¿Qué está incluido en el precio del ticket?',
-    answer: 'Tu ticket incluye: acceso completo a todas las sesiones y workshops, materiales digitales del evento, desayunos y almuerzos ambos días, coffee breaks, certificado digital de asistencia, acceso a grabaciones post-evento, y acceso al grupo exclusivo de WhatsApp de la comunidad LATAI Summit. Los tickets Early Bird y Super Early Bird incluyen beneficios adicionales de networking.'
+    answer: 'Tu ticket incluye: acceso completo a todas las sesiones y workshops, materiales digitales del evento, desayunos y almuerzos ambos días, coffee breaks, certificado digital de asistencia, acceso a grabaciones post-evento, y acceso al grupo exclusivo de WhatsApp de la comunidad CENTRO. Los tickets Early Bird y Super Early Bird incluyen beneficios adicionales de networking.'
   },
   {
     question: '¿Necesito conocimientos técnicos avanzados para aprovechar el evento?',
-    answer: 'No necesitas ser experto técnico. LATAI Summit está diseñado para líderes de negocio, gerentes, emprendedores y profesionales técnicos por igual. Tenemos tracks para diferentes niveles: desde "Introducción a IA para Líderes" hasta "Implementación Técnica Avanzada". El 60% del contenido se enfoca en estrategia y casos de uso de negocio, no en código.'
+    answer: 'No necesitas ser experto técnico. CENTRO está diseñado para líderes de negocio, gerentes, emprendedores y profesionales técnicos por igual. El contenido abarca desde fundamentos estratégicos hasta implementación técnica, con tracks adaptados a diferentes perfiles. El enfoque es práctico: cómo implementar IA que genere resultados reales.'
   },
   {
     question: '¿Ofrecen descuentos para equipos o grupos?',
-    answer: 'Sí, ofrecemos descuentos grupales para 3+ personas de la misma empresa. Contacta a nuestro equipo en hola@lataisummit.com para obtener un código de descuento personalizado. Recomendamos traer a tu equipo completo para maximizar la implementación post-evento.'
+    answer: 'Sí, ofrecemos descuentos grupales para 3+ personas de la misma empresa. Contacta a nuestro equipo en hello@ghcapital.lat para obtener un código de descuento personalizado. Recomendamos traer a tu equipo completo para maximizar la implementación post-evento.'
   },
   {
     question: '¿Dónde se realiza el evento y cómo llego?',
@@ -53,7 +53,7 @@ export default function FAQSection() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
+    <section id="faq" className="py-20 bg-[#0f0a05]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -62,16 +62,18 @@ export default function FAQSection() {
               Preguntas Frecuentes
             </h2>
             <p className="text-xl text-gray-300">
-              Encuentra respuestas a las preguntas más comunes sobre LATAI Summit
+              Encuentra respuestas a las preguntas más comunes sobre CENTRO
             </p>
           </div>
 
-          {/* FAQ Accordion */}
-          <div className="space-y-4">
+          {/* FAQ Accordion - Fitted Stack */}
+          <div className="fitted-stack">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl border border-slate-700 overflow-hidden transition hover:border-indigo-500/50"
+                className={`stone-block overflow-hidden transition-colors ${
+                  openIndex === index ? 'border-[#E99C37]/50' : ''
+                }`}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
@@ -81,7 +83,7 @@ export default function FAQSection() {
                     {faq.question}
                   </h3>
                   <svg
-                    className={`w-6 h-6 text-violet-400 flex-shrink-0 transition-transform ${
+                    className={`w-6 h-6 text-[#FBD64C] flex-shrink-0 transition-transform ${
                       openIndex === index ? 'transform rotate-180' : ''
                     }`}
                     fill="none"
@@ -93,7 +95,7 @@ export default function FAQSection() {
                 </button>
 
                 {openIndex === index && (
-                  <div className="px-6 pb-6 text-gray-300 leading-relaxed animate-fade-in">
+                  <div className="px-6 pb-6 text-gray-300 leading-relaxed animate-fade-in border-t border-[#3d2f1e]/50 pt-4">
                     {faq.answer}
                   </div>
                 )}
@@ -103,28 +105,17 @@ export default function FAQSection() {
 
           {/* Contact CTA */}
           <div className="mt-12 text-center">
-            <p className="text-gray-400 mb-4">¿Tienes otra pregunta?</p>
+            <p className="text-gray-400 mb-4">Tienes otra pregunta?</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:hola@lataisummit.com"
-                className="px-8 py-3 bg-gradient-to-r from-cyan-600 to-blue-700 hover:from-cyan-700 hover:to-blue-800 text-white font-semibold rounded-lg transition inline-flex items-center justify-center gap-2"
+                href="mailto:hello@ghcapital.lat"
+                className="btn-stone-primary px-8 py-3 text-white font-semibold inline-flex items-center justify-center gap-2"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
-                Envíanos un Email
-              </a>
-              <a
-                href="https://wa.me/51999999999"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition inline-flex items-center justify-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                Chatea con Nosotros
+                Envianos un Email
               </a>
             </div>
           </div>

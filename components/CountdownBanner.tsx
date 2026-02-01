@@ -34,48 +34,40 @@ export default function CountdownBanner() {
   }
 
   return (
-    <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 border-b border-indigo-500/20 fixed top-0 left-0 right-0 z-[60]">
+    <div className="bg-[#9A0B25] border-b border-[#E99C37]/40 fixed top-0 left-0 right-0 z-[60]">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between py-2 gap-2 sm:gap-4 text-xs sm:text-sm">
-          {/* Left: Urgency Message */}
-          <div className="flex items-center gap-2 text-violet-300 font-medium">
-            <svg className="w-4 h-4 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+        <div className="flex items-center justify-center py-2 gap-4 text-xs sm:text-sm">
+          {/* Urgency Message */}
+          <div className="flex items-center gap-2 text-amber-200 font-medium">
+            <svg className="w-4 h-4 animate-pulse text-[#FBD64C]" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
             </svg>
-            <span className="hidden sm:inline">🔥 Early Bird 40% OFF termina en:</span>
-            <span className="sm:hidden">⏰ 40% OFF termina:</span>
+            <span className="hidden sm:inline">🔥 Early Bird <span className="text-[#FBD64C] font-bold">40% OFF</span> termina en:</span>
+            <span className="sm:hidden">🔥 <span className="text-[#FBD64C] font-bold">40% OFF</span></span>
           </div>
 
-          {/* Center: Countdown */}
+          {/* Countdown */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="flex items-center gap-1 bg-indigo-900/40 px-2 py-1 rounded">
+            <div className="flex items-center gap-1 bg-black/40 px-2 py-1 border border-[#E99C37]/20" style={{ borderRadius: '3px' }}>
               <span className="text-white font-bold font-display">{String(timeLeft.days).padStart(2, '0')}</span>
-              <span className="text-xs text-gray-400">d</span>
+              <span className="text-xs text-amber-200/60">d</span>
             </div>
-            <span className="text-indigo-400">:</span>
-            <div className="flex items-center gap-1 bg-indigo-900/40 px-2 py-1 rounded">
+            <span className="text-[#FBD64C]">:</span>
+            <div className="flex items-center gap-1 bg-black/40 px-2 py-1 border border-[#E99C37]/20" style={{ borderRadius: '3px' }}>
               <span className="text-white font-bold font-display">{String(timeLeft.hours).padStart(2, '0')}</span>
-              <span className="text-xs text-gray-400">h</span>
+              <span className="text-xs text-amber-200/60">h</span>
             </div>
-            <span className="text-indigo-400">:</span>
-            <div className="flex items-center gap-1 bg-indigo-900/40 px-2 py-1 rounded">
+            <span className="text-[#FBD64C]">:</span>
+            <div className="flex items-center gap-1 bg-black/40 px-2 py-1 border border-[#E99C37]/20" style={{ borderRadius: '3px' }}>
               <span className="text-white font-bold font-display">{String(timeLeft.minutes).padStart(2, '0')}</span>
-              <span className="text-xs text-gray-400">m</span>
+              <span className="text-xs text-amber-200/60">m</span>
             </div>
-            <span className="text-indigo-400">:</span>
-            <div className="flex items-center gap-1 bg-indigo-900/40 px-2 py-1 rounded">
+            <span className="text-[#FBD64C]">:</span>
+            <div className="flex items-center gap-1 bg-black/40 px-2 py-1 border border-[#E99C37]/20" style={{ borderRadius: '3px' }}>
               <span className="text-white font-bold font-display">{String(timeLeft.seconds).padStart(2, '0')}</span>
-              <span className="text-xs text-gray-400">s</span>
+              <span className="text-xs text-amber-200/60">s</span>
             </div>
           </div>
-
-          {/* Right: CTA - Hidden on mobile to avoid double CTA, visible on desktop */}
-          <button
-            onClick={scrollToPricing}
-            className="hidden sm:block px-4 py-1.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold rounded text-xs sm:text-sm transition-all whitespace-nowrap"
-          >
-            Obtener Descuento →
-          </button>
         </div>
       </div>
     </div>

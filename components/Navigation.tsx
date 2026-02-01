@@ -1,9 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 
-export default function Navigation() {
+interface NavigationProps {
+  onOpenWaitlist?: () => void
+  onOpenSponsor?: () => void
+}
+
+export default function Navigation({ onOpenWaitlist, onOpenSponsor }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -35,12 +39,26 @@ export default function Navigation() {
     setIsMobileMenuOpen(false)
   }
 
+  const handleWaitlistClick = () => {
+    if (onOpenWaitlist) {
+      onOpenWaitlist()
+    }
+    setIsMobileMenuOpen(false)
+  }
+
+  const handleSponsorClick = () => {
+    if (onOpenSponsor) {
+      onOpenSponsor()
+    }
+    setIsMobileMenuOpen(false)
+  }
+
   return (
     <>
       <nav
         className={`fixed top-[44px] left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-slate-900/95 backdrop-blur-md border-b border-white/10 shadow-lg'
+            ? 'bg-[#0f0a05]/95 backdrop-blur-md border-b border-orange-500/10 shadow-lg shadow-black/20'
             : 'bg-transparent'
         }`}
       >
@@ -51,14 +69,9 @@ export default function Navigation() {
               onClick={() => scrollToSection('#')}
               className="relative group"
             >
-              <div className="relative h-12 w-40">
-                <Image
-                  src="/assets/latai-logo.png"
-                  alt="LATAI Summit"
-                  fill
-                  className="object-contain object-left transition-opacity group-hover:opacity-80"
-                  priority
-                />
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-black text-white tracking-tight">CENTRO</span>
+                <span className="text-lg font-bold text-[#E99C37]">'26</span>
               </div>
             </button>
 
@@ -68,24 +81,34 @@ export default function Navigation() {
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-gray-300 hover:text-indigo-500 font-medium transition-colors relative group"
+                  className="text-gray-300 hover:text-[#FBD64C] font-medium transition-colors relative group"
                 >
                   {link.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#E99C37] to-[#FBD64C] group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
-              <button
-                onClick={() => scrollToSection('#pricing')}
-                className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-105"
-              >
-                Obtener Tickets
-              </button>
+
+              {/* Dual CTA - Sponsor + Attendee */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleSponsorClick}
+                  className="px-5 py-2.5 border border-[#E99C37]/50 hover:border-[#E99C37] text-[#E99C37] hover:text-[#FBD64C] font-semibold rounded-lg transition-all duration-300 hover:bg-[#E99C37]/10"
+                >
+                  Quiero ser Sponsor
+                </button>
+                <button
+                  onClick={handleWaitlistClick}
+                  className="px-6 py-2.5 bg-gradient-to-r from-[#E99C37] to-[#D4A83D] hover:from-[#C47F2A] hover:to-[#E99C37] text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105"
+                >
+                  Reserva tu lugar
+                </button>
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-gray-300 hover:text-white"
+              className="md:hidden p-2 text-gray-300 hover:text-[#FBD64C]"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -103,23 +126,33 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-slate-900/98 backdrop-blur-lg border-t border-white/10 animate-slide-up">
+          <div className="md:hidden bg-[#0f0a05]/98 backdrop-blur-lg border-t border-orange-500/10 animate-slide-up">
             <div className="container mx-auto px-4 py-4 space-y-2">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className="block w-full text-left px-4 py-3 text-gray-300 hover:text-indigo-500 hover:bg-white/5 rounded-lg transition-colors font-medium"
+                  className="block w-full text-left px-4 py-3 text-gray-300 hover:text-[#FBD64C] hover:bg-orange-500/5 rounded-lg transition-colors font-medium"
                 >
                   {link.name}
                 </button>
               ))}
-              <button
-                onClick={() => scrollToSection('#pricing')}
-                className="block w-full px-4 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-indigo-500/25"
-              >
-                Obtener Tickets
-              </button>
+
+              {/* Mobile Dual CTA */}
+              <div className="pt-2 space-y-2">
+                <button
+                  onClick={handleSponsorClick}
+                  className="block w-full px-4 py-3 border border-[#E99C37]/50 text-[#E99C37] font-semibold rounded-lg transition-all duration-300 hover:bg-[#E99C37]/10"
+                >
+                  Quiero ser Sponsor
+                </button>
+                <button
+                  onClick={handleWaitlistClick}
+                  className="block w-full px-4 py-3 bg-gradient-to-r from-[#E99C37] to-[#D4A83D] hover:from-[#C47F2A] hover:to-[#E99C37] text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-orange-500/25"
+                >
+                  Reserva tu lugar
+                </button>
+              </div>
             </div>
           </div>
         )}

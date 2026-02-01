@@ -1,0 +1,103 @@
+/* ═══════════════════════════════════════════════════════════════════
+   LATIDO Design Tokens
+   Extracted from style validation page — Paula Scher / Donda language
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── Palette ─── */
+  --lat-bk: #0a0a0a;
+  --lat-wh: #f5f0eb;
+  --lat-rd: #d42020;
+  --lat-rd-dk: #b81a1a;
+
+  /* ─── Timing ─── */
+  --lat-beat: 1.8s;
+  --lat-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ─── Spacing ─── */
+  --lat-section-px: clamp(2rem, 5vw, 6rem);
+  --lat-section-py: clamp(6rem, 12vh, 14rem);
+
+  /* ─── Type Scale ─── */
+  --lat-text-xs: 0.6875rem;    /* 11px — absolute minimum */
+  --lat-text-sm: 0.8125rem;    /* 13px — captions, badges */
+  --lat-text-base: 1rem;       /* 16px — body text */
+  --lat-text-lg: 1.125rem;     /* 18px — lead paragraphs */
+
+  /* ─── Semantic Text Colors (on dark bg) ─── */
+  --lat-text-primary: rgba(245, 240, 235, 0.88);
+  --lat-text-secondary: rgba(245, 240, 235, 0.55);
+  --lat-text-tertiary: rgba(245, 240, 235, 0.35);
+  --lat-text-ghost: rgba(245, 240, 235, 0.12);
+
+  /* ─── WCAG-safe red for small text ─── */
+  --lat-rd-text: #e84040;
+
+  /* ─── Grain ─── */
+  --lat-grain-url: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Typography: defined on body where next/font CSS variables are available */
+body {
+  --lat-font-display: var(--font-anton), Impact, "Arial Black", sans-serif;
+  --lat-font-body: var(--font-inter), system-ui, sans-serif;
+}
+
+/* ═══ Keyframes ═══ */
+
+@keyframes lat-heartbeat {
+  0%, 28%, 100% { transform: scale(1); }
+  7% { transform: scale(1.018); }
+  21% { transform: scale(1.008); }
+}
+
+@keyframes lat-red-glow {
+  0%, 28%, 100% { text-shadow: 0 0 0 transparent; }
+  7% { text-shadow: 0 0 80px rgba(212, 32, 32, 0.5), 0 0 200px rgba(212, 32, 32, 0.15); }
+  21% { text-shadow: 0 0 40px rgba(212, 32, 32, 0.25); }
+}
+
+@keyframes lat-spot-breath {
+  0%, 28%, 100% { opacity: 0.9; transform: translate(-50%, 0) scaleY(1); }
+  7% { opacity: 1; transform: translate(-50%, 0) scaleY(1.06); }
+  21% { opacity: 0.94; transform: translate(-50%, 0) scaleY(1.03); }
+}
+
+@keyframes lat-dot-pulse {
+  0%, 28%, 100% { opacity: 0.12; box-shadow: none; }
+  7% { opacity: 1; box-shadow: 0 0 20px 6px rgba(212, 32, 32, 0.5); }
+  21% { opacity: 0.4; box-shadow: 0 0 8px 2px rgba(212, 32, 32, 0.15); }
+}
+
+@keyframes lat-slide-up {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lat-float {
+  0%, 100% { transform: translateY(0); opacity: 0.15; }
+  50% { transform: translateY(14px); opacity: 0.6; }
+}
+
+@keyframes lat-divider-pulse {
+  0%, 28%, 100% { opacity: 0.15; }
+  7% { opacity: 0.6; }
+  21% { opacity: 0.3; }
+}
+
+/* ═══ Utility: scroll reveal ═══ */
+.lat-revealed {
+  animation: lat-slide-up 0.7s var(--lat-ease) forwards;
+}
+
+/* ═══ Reduced motion ═══ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --lat-beat: 0s;
+  }
+  .lat-revealed {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Anton, Inter } from "next/font/google";
 import "./globals.css";
+import "../components/styles/tokens.css";
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -13,32 +15,45 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const anton = Anton({
+  weight: "400",
+  variable: "--font-anton",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "LATAI Summit 2025 | El Evento Premier de IA de LATAM para el Mundo",
-  description: "El evento premier de Inteligencia Artificial de LATAM para el mundo. Únete a 500+ líderes latinoamericanos construyendo el futuro de la IA. 2 días de estrategias accionables, speakers de clase mundial y networking de alto impacto. Lima, Mayo 7-8, 2025.",
-  keywords: "IA LATAM, Inteligencia Artificial Latinoamérica, AI Summit, LATAI, evento tecnología, machine learning, fintech IA, transformación digital, IA Perú, AI conference",
-  authors: [{ name: "LATAI Summit" }],
+  title: "CENTRO '26 | Donde el mundo converge con Latinoamérica",
+  description: "Hace 500 años, Perú fue el centro de un continente. Ese rol se perdió. CENTRO lo recupera. Primera edición: Inteligencia Artificial Operacional. Mayo 2026, Lima.",
+  keywords: "CENTRO, IA LATAM, Inteligencia Artificial Latinoamérica, AI Summit, evento tecnología, transformación digital, IA Perú, AI conference, Perú tech hub",
+  authors: [{ name: "CENTRO" }],
   openGraph: {
-    title: "LATAI Summit 2025 | El Evento Premier de IA de LATAM para el Mundo",
-    description: "El evento premier de IA de LATAM para el mundo. 500+ líderes latinoamericanos construyendo el futuro de la Inteligencia Artificial. Mayo 7-8, 2025 en Lima.",
-    url: "https://lataisummit.com",
-    siteName: "LATAI Summit",
+    title: "CENTRO '26 | Donde el mundo converge con Latinoamérica",
+    description: "El punto de convergencia para transformar la región. Perú vuelve a ser el centro. Primera edición: IA Operacional. Mayo 2026, Lima.",
+    url: "https://centro.lat",
+    siteName: "CENTRO",
     locale: "es_PE",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-centro.jpg",
         width: 1200,
         height: 630,
-        alt: "LATAI Summit 2025",
+        alt: "CENTRO '26 - Donde el mundo converge con Latinoamérica",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LATAI Summit 2025 | El Evento Premier de IA de LATAM para el Mundo",
-    description: "El evento premier de IA de LATAM para el mundo. 2 días de estrategias de IA, speakers de clase mundial y networking de alto impacto. Lima, Mayo 7-8, 2025.",
-    images: ["/og-image.jpg"],
+    title: "CENTRO '26 | Donde el mundo converge con Latinoamérica",
+    description: "Hace 500 años, todo convergía en Perú. CENTRO lo recupera. Primera edición: IA Operacional. Mayo 2026, Lima.",
+    images: ["/og-centro.jpg"],
   },
   robots: {
     index: true,
@@ -85,7 +100,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${anton.variable} ${inter.variable} antialiased`}
       >
         {children}
       </body>
